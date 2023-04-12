@@ -8,17 +8,19 @@ export const Contexto = createContext({} as LoteriaProps);
 export function Provider({ children }: any) {
     const [megasena, setMegasena] = useState({} as Props)
     const [lotofacil, setLotofacil] = useState({} as Props)
+    const [quina, setQuina] = useState({} as Props)
 
     useEffect(() => {
         (async function () {
             const resp = await Loteria.get();
             setMegasena(resp.megasena);
             setLotofacil(resp.lotofacil)
+            setQuina(resp.quina)
         })()
     }, []);
 
     return (
-        <Contexto.Provider value={{ megasena, lotofacil, setMegasena, setLotofacil }} >
+        <Contexto.Provider value={{ megasena, lotofacil, quina, setMegasena, setLotofacil, setQuina }} >
             <span>{children}</span>
         </Contexto.Provider>
     )
