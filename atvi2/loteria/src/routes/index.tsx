@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Quina from '../pages/Quina';
 import Lotofacil from '../pages/Lotofacil';
 import Megasena from '../pages/Megasena';
+import Menu from '../components/menu/Menu'
 
 
 function Erro() {
@@ -10,21 +11,13 @@ function Erro() {
     )
 }
 
-function Menu() {
-    return(
-        <div>
-            <Link to={"/lotofacil"}> Lotofácil</Link>
-            <Link to={"/megasena"}> Megasena</Link>
-            <Link to={"/quina"}> Quina</Link>
-        </div>
-    )
-}
+
 
 function Rota() {
     return (
         <>
             <BrowserRouter>
-            <Menu/>
+                <Menu/>
                 <Routes>
                     <Route path='/quina' element={<Quina/>}/>
                     <Route path='/lotofacil' element={<Lotofacil/>}/>
