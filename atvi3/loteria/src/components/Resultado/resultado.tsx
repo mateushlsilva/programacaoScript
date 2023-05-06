@@ -25,7 +25,7 @@ const LiSld = styled.li`
     width: 14%;
     border-radius: 100%;
     background-color: ${props =>props.theme.bola};
-    margin-right: 5px;
+    margin-right: 1px;
     text-align: center;
     line-height: 2em;
     font-weight: bold;

@@ -16,7 +16,7 @@ export default function Menu() {
                 linkAtual.pathname === "/lotofacil" ? 
                 <LinkSld/> : <Linklotofacil/>
             } */}
-            <LinkSld cor={'930089'} to={"/lotofacil"}> Lotofácil</LinkSld>
+            <LinkSld cor={'930089'} to={"/timemania"}> Timemania</LinkSld>
             <LinkSld cor={'209869'} to={"/megasena"} > Megasena</LinkSld>
             <LinkSld cor={'260085'} to={"/quina"} > Quina</LinkSld>
         </MenuSld>
