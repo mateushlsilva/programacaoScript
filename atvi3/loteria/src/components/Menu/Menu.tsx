@@ -1,24 +1,27 @@
 import { Link, useLocation } from 'react-router-dom'
-import './menu.css'
 import styled from 'styled-components'
-import { useState } from 'react'
 
+const mega = {
+    cor: "#209869"
+}
+const quina = {
+    cor: "#260085"
+}
+const time = {
+    cor: "#00ff48"
+}
 
-interface Props{
-    cor: string
+const Props = {
+    cor: "#ddd"
 }
 
 export default function Menu() {
     const linkAtual = useLocation()
     return(
         <MenuSld>
-            {/* {
-                linkAtual.pathname === "/lotofacil" ? 
-                <LinkSld/> : <Linklotofacil/>
-            } */}
-            <LinkSld cor={'930089'} to={"/timemania"}> Timemania</LinkSld>
-            <LinkSld cor={'209869'} to={"/megasena"} > Megasena</LinkSld>
-            <LinkSld cor={'260085'} to={"/quina"} > Quina</LinkSld>
+            <LinkSld theme={linkAtual.pathname === "/timemania"? Props: time} to={"/timemania"}> Timemania</LinkSld>
+            <LinkSld  theme={linkAtual.pathname === "/megasena"? Props: mega} to={"/megasena"} > Megasena</LinkSld>
+            <LinkSld  theme={linkAtual.pathname === "/quina"? Props: quina} to={"/quina"} > Quina</LinkSld>
         </MenuSld>
     )
 }
@@ -29,55 +32,11 @@ const MenuSld = styled.div`
     margin-top: 1%;
     margin-left: 5.5%;
 `
-const LinkSldD = styled.link`
-color: #ddd;
-pointer-events: none;
+
+const LinkSld = styled(Link)`
 text-decoration: none;
-font-size: 18px;
-padding: 12px;
-`
-const LinkSld = styled(Link)<Props>`
-text-decoration: none;
-color: ${(props) => props.cor};
+color: ${props =>props.theme.cor};
 padding: 12px;
 font-size: 18px;
+font-weight: bold;
 `
-
-/*
-
-.linklotofacil{
-    text-decoration: none;
-	color: #930089;
-	padding: 12px;
-    font-size: 18px;
-}
-
-.linkmegasena{
-    text-decoration: none;
-	color: #209869;
-	padding: 12px;
-    font-size: 18px;
-}
-
-.linkquina{
-    text-decoration: none;
-	color: #260085;
-	padding: 12px;
-    font-size: 18px;
-}
-
-
-
-.link:hover{
-    color: rgba(225, 225, 255, 0.5);
-}  
-
-
-.link-cor {
-    color: #ddd;
-    pointer-events: none;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 12px;
-}
-*/
