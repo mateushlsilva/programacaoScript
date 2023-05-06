@@ -15,5 +15,5 @@ export default InforConcurso;
 const DataSld = styled.div`
     margin-left: 200px;
     max-width: 400px;
-    color: #4c556c;
+    color: ${props =>props.theme.data};
 `

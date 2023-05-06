@@ -15,7 +15,7 @@ export default Titulo;
 
 const LoteriaSld = styled.div`
     display: inline-block;
-    color: ${props =>props.theme.cor};
+    color: ${props =>props.theme.loteria};
     text-align: center;
     text-transform: uppercase;
     font-size: 20px;

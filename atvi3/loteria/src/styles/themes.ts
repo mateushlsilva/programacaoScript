@@ -6,7 +6,7 @@ const mega = {
     bola: "#209869",
     bolafonte: "#fff"
 };
-const quina = {
+const quinaT = {
     acumulou: "#0066b3",
     data: "#4c556c",
     estimativa: "#260085",
@@ -14,7 +14,7 @@ const quina = {
     bola: "#260085",
     bolafonte: "#fff"
 }
-const timemania = {
+const timemaniaT = {
     acumulou: "#0066b3",
     data: "#4c556c",
     estimativa: "#00ff48",
@@ -24,7 +24,7 @@ const timemania = {
 }
 
 export{
-    timemania,
+    timemaniaT,
     mega,
-    quina
+    quinaT
 };

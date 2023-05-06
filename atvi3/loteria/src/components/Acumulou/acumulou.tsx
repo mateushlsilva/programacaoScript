@@ -13,7 +13,7 @@ function Ganhadores({ ganhadores }: any) {
 export default Ganhadores;
 
 const AcumuloSld = styled.div`
-    color: #0066b3;
+    color: ${props =>props.theme.acumulou};
     text-align: center;
     text-transform: uppercase;
     display: inline-block;

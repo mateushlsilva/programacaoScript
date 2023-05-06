@@ -7,19 +7,15 @@ import NumerosSorteados from "../components/Resultado/resultado"
 import Ganhadores from "../components/Acumulou/acumulou";
 import ProximoSorteio from "../components/infoProximoSorteio/ProximoSorteio"
 import InforConcurso from "../components/Data/data"
+import { quinaT } from "../styles/themes";
 
 
-const tema = {
-  fundo: "#260085",
-  cor: "#260085",
-  corNumero: "white"
-};
 export default function Quina(){
 
     const {quina} = useContexto()
 
     return(
-      <ThemeProvider theme={tema}>
+      <ThemeProvider theme={quinaT}>
           <div className='cont'>{ /* quina */}
 
           <div className='direito'>

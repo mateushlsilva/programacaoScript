@@ -13,7 +13,7 @@ function Valor({ valor }: any) {
 export default Valor
 
 const ValorSld = styled.div`
-    color: ${props =>props.theme.cor};
+    color: ${props =>props.theme.estimativa};
     font-weight: bold;
     margin-left: 17vh;
     max-width: 200px;

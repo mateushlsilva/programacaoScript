@@ -7,18 +7,14 @@ import NumerosSorteados from "../components/Resultado/resultado"
 import Ganhadores from "../components/Acumulou/acumulou"
 import ProximoSorteio from "../components/infoProximoSorteio/ProximoSorteio"
 import InforConcurso from "../components/Data/data"
+import { mega } from '../styles/themes';
 
-const tema = {
-  fundo: "#209869",
-  cor: "#209869",
-  corNumero: "white"
-};
 export default function Megasena(){
 
   const {megasena} = useContexto()
 
     return(
-      <ThemeProvider theme={tema}>
+      <ThemeProvider theme={mega}>
         <div className='cont'> { /* megasena */}
 
           <div className='direito'>

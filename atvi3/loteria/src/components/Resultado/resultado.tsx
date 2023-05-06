@@ -20,11 +20,11 @@ const UlSld = styled.ul`
 
 const LiSld = styled.li`
     display: inline-block;
-    color: ${props =>props.theme.corNumero};
+    color: ${props =>props.theme.bolafonte};
     font-size: 1.5rem;
     width: 14%;
     border-radius: 100%;
-    background-color: ${props =>props.theme.fundo};
+    background-color: ${props =>props.theme.bola};
     margin-right: 5px;
     text-align: center;
     line-height: 2em;
