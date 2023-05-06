@@ -3,7 +3,7 @@ import Ganhadores from "../components/ganhadores/Ganhadores";
 import InforConcurso from "../components/infoConcurso/InforConcurso";
 import ProximoSorteio from "../components/infoProximoSorteio/ProximoSorteio";
 import NumerosSorteadosLoto from "../components/numerosSorteados/NumerosSorteadosLoto";
-import TituloLoto from "../components/titulo/tituloLoto";
+//import TituloLoto from "../components/titulo/tituloLoto";
 import ValorLoto from "../components/valor/valorLoto";
 import { useContexto } from "../hooks";
 
@@ -16,7 +16,7 @@ export default function Lotofacil(){
 
         <div className='direito'>
 
-          <div className='trevo'><img src={trevoLoto} /><TituloLoto titulo={"Loto facil"} /></div>
+          {/* <div className='trevo'><img src={trevoLoto} /><Titulo titulo={"Loto facil"} /></div> */}
           <ProximoSorteio informacoes={"Estimativa de prêmio do proximo concurso. "} data={`Sorteio em ${lotofacil.dataProximoConcurso}:`} />
           <ValorLoto valor={lotofacil.valorEstimadoProximoConcurso} />
 

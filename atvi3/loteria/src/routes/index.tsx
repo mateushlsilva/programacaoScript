@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Quina from '../pages/Quina';
 import Lotofacil from '../pages/Lotofacil';
 import Megasena from '../pages/Megasena';
-import Menu from '../components/menu/Menu'
+import Menu from '../components/Menu/Menu'
 
 
 function Erro() {
