@@ -8,7 +8,18 @@ function Carregando() {
     )
 }
 
-export default Carregando;
+function Erro() {
+    return(
+        <CarSld>
+            Indisponível ...
+        </CarSld>
+    )
+}
+
+export  {
+    Carregando,
+    Erro
+}
 
 const CarSld = styled.div`
     text-Align: center; 

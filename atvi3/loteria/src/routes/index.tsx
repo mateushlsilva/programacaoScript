@@ -3,13 +3,8 @@ import Quina from '../pages/Quina';
 import Lotofacil from '../pages/Lotofacil';
 import Megasena from '../pages/Megasena';
 import Menu from '../components/Menu/Menu'
+import { Erro } from '../components/Carregando/carregando';
 
-
-function Erro() {
-    return(
-        <div style={{textAlign:'center', fontSize: '30px', marginTop: '300px'}}>Indisponível ...</div>
-    )
-}
 
 
 

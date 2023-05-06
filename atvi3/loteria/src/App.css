@@ -17,21 +17,4 @@ body {
 .App-link {
   color: #61dafb;
 }
-.cont {
-  height: 50vh;
-  border-style: solid;
-  border-width: 0px 0px 1px;
-  border-color: #ddd;
-  display: flex;
-}
-.trevo {  
-  margin-top: 20px;
-  margin-left: 10vh;
-  max-width: 300px;
-}
-.direito {
-  display: inline-block;
-}
-.esquerdo {
-  display: inline-block;
-}
+
