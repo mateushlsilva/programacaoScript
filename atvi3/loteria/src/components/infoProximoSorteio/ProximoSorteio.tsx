@@ -1,12 +1,18 @@
-import './proximoSorteio.css'
+import styled from "styled-components";
 
 function ProximoSorteio({ informacoes, data }: any) {
     return (
-        <div className='informacoesProx'>
+        <DataSld>
             <h4>
                 {informacoes}{data}
             </h4>
-        </div>
+        </DataSld>
     );
 }
 export default ProximoSorteio;
+
+const DataSld = styled.div`
+    margin-left: 17vh;
+    max-width: 250px;
+    color: #4c556c;
+`

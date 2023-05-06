@@ -1,17 +1,18 @@
 import trevoQuina from "../assets/trevo-quina.png"
-import Ganhadores from "../components/ganhadores/Ganhadores";
-import InforConcurso from "../components/infoConcurso/InforConcurso";
-import ProximoSorteio from "../components/infoProximoSorteio/ProximoSorteio";
-import NumerosSorteadosQuina from "../components/numerosSorteados/NumerosSorteadosQuina";
-
-import ValorQuina from "../components/valor/valorQuina";
 import { useContexto } from "../hooks";
 import{ ThemeProvider } from"styled-components";
 import  Titulo from "../components/NomeLoteria/nomeLoteria"
+import Valor from "../components/Estimativa/estimativa"
+import NumerosSorteados from "../components/Resultado/resultado"
+import Ganhadores from "../components/Acumulou/acumulou";
+import ProximoSorteio from "../components/infoProximoSorteio/ProximoSorteio"
+import InforConcurso from "../components/Data/data"
+
 
 const tema = {
-  //fundo: "#e0ffff",
-  cor: "#260085"
+  fundo: "#260085",
+  cor: "#260085",
+  corNumero: "white"
 };
 export default function Quina(){
 
@@ -25,13 +26,13 @@ export default function Quina(){
 
             <div className='trevo'><img src={trevoQuina} /><Titulo titulo={"Quina"} /> </div>
             <ProximoSorteio informacoes={"Estimativa de prêmio do proximo concurso. "} data={`Sorteio em ${quina.dataProximoConcurso}:`} />
-            <ValorQuina valor={quina.valorEstimadoProximoConcurso} />
+            <Valor valor={quina.valorEstimadoProximoConcurso} />
 
             </div>
 
             <div className='esquerdo'>
 
-            <NumerosSorteadosQuina numeros={quina.dezenas} />
+            <NumerosSorteados numeros={quina.dezenas} />
             <Ganhadores ganhadores={quina.quantidadeGanhadores ? `${quina.quantidadeGanhadores} GANHADORES` : "ACUMULOU"} />
             <InforConcurso informacoes={`Concuso: ${quina.numeroDoConcurso} -`} data={` ${quina.dataPorExtenso}`} />
 

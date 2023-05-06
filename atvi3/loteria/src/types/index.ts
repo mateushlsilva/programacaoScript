@@ -1,9 +1,9 @@
 export interface LoteriaProps {
     megasena: Props;
-    lotofacil: Props;
+    timemania: Props;
     quina: Props;
     setMegasena: Function;
-    setLotofacil: Function;
+    setTimemania: Function;
     setQuina: Function;
 }
 

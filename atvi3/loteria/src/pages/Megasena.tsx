@@ -1,17 +1,17 @@
 import trevoMega from '../assets/trevo-megasena.png'
-import Ganhadores from "../components/ganhadores/Ganhadores"
-import InforConcurso from "../components/infoConcurso/InforConcurso"
-import ProximoSorteio from "../components/infoProximoSorteio/ProximoSorteio"
-import NumerosSorteados from "../components/numerosSorteados/NumerosSorteados"
-
-import Valor from "../components/valor/valor"
 import { useContexto } from "../hooks"
 import{ ThemeProvider } from"styled-components";
 import  Titulo from "../components/NomeLoteria/nomeLoteria"
+import Valor from "../components/Estimativa/estimativa"
+import NumerosSorteados from "../components/Resultado/resultado"
+import Ganhadores from "../components/Acumulou/acumulou"
+import ProximoSorteio from "../components/infoProximoSorteio/ProximoSorteio"
+import InforConcurso from "../components/Data/data"
 
 const tema = {
-  //fundo: "#e0ffff",
-  cor: "#209869"
+  fundo: "#209869",
+  cor: "#209869",
+  corNumero: "white"
 };
 export default function Megasena(){
 
