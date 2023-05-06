@@ -4,7 +4,7 @@ function Valor({ valor }: any) {
     return (
         <ValorSld>
             <h2>
-                R$ {valor}
+                R$ {valor},00
             </h2>
         </ValorSld>
     )

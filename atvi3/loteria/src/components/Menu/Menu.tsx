@@ -26,8 +26,6 @@ export default function Menu() {
     )
 }
 
-// 'link-cor':' link linklotofacil'
-
 const MenuSld = styled.div`
     margin-top: 1%;
     margin-left: 5.5%;
