@@ -7,7 +7,7 @@ export class Teams {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({unique: true})
     name: string;
 
 

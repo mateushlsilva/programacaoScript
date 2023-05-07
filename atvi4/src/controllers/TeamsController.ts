@@ -22,37 +22,44 @@ class TeamsController {
         return res.json((await teamsRepository).sort((a,b) => a.name.localeCompare(b.name)))
     }
 
-    // public async postCommittee (req: Request, res: Response) : Promise<Response> {
-    //     const createCommittee = req.body
-    //     const committeeRepository = AppDataSource.getRepository(Committee)
-    //     const insertCommittee = new Committee();
-    //     insertCommittee.comiImpactCto = createCommittee.comiImpactCto
-    //     insertCommittee.comiImpactHp = createCommittee.comiImpactHp
-    //     insertCommittee.comiCostSquad = createCommittee.comiCostSquad
-    //     insertCommittee.comiRiskRt = createCommittee.comiRiskRt
-    //     insertCommittee.comiRiskCso = createCommittee.comiRiskCso
-  
-    
+    public async postTeams (req: Request, res: Response) : Promise<Response> {
+        try{
+            const create = req.body
+            const teamsRepository = AppDataSource.getRepository(Teams)
+            const insert = new Teams();
+            insert.name = create.name[0].toUpperCase() + create.name.slice(1,create.name.length).toLowerCase()
+            const all = await teamsRepository.save(insert)
+            return res.json(all)
+        }catch(err){
+            return res.json({error: "O nome já existe"})
+        }
+    }
 
-    //     const allCommittee = await committeeRepository.save(insertCommittee)
-    //     return res.json(allCommittee)
-    // }
+    public async putTeams (req: Request, res: Response) : Promise<Response> {
+        try{
+            const create = req.body
+            const teamsRepository = AppDataSource.getRepository(Teams)
+            const find = await teamsRepository.findOneBy({id: create.id})
+            find.name = create.name[0].toUpperCase() + create.name.slice(1,create.name.length).toLowerCase()
+            const all = await teamsRepository.save(find)
+            return res.json(all)
+        }catch(err){
+            return res.json({error: "O nome já existe"})
+        }
+    }
 
-    // public async putCommittee (req: Request, res: Response) : Promise<Response> {
-    //     const createCommittee = req.body
-    //     const idCommittee:any = req.params.uuid
-    //     const committeeRepository = AppDataSource.getRepository(Committee)
-    //     const findCommittee = await committeeRepository.findOneBy({id: idCommittee})
-    //     findCommittee.comiImpactCto = createCommittee.comiImpactCto
-    //     findCommittee.comiImpactHp = createCommittee.comiImpactHp
-    //     findCommittee.comiCostSquad = createCommittee.comiCostSquad
-    //     findCommittee.comiRiskRt = createCommittee.comiRiskRt
-    //     findCommittee.comiRiskCso = createCommittee.comiRiskCso
-
-    
-    //     const allCommittee = await committeeRepository.save(findCommittee)
-    //     return res.json(allCommittee)
-    // }
+    public async deleteTeams (req: Request, res: Response) : Promise<Response> {
+        try{
+            const create = req.body
+            const teamsRepository = AppDataSource.getRepository(Teams)
+            const find = await teamsRepository.findOneBy({id: create.id})
+            
+            const all = await teamsRepository.delete(find)
+            return res.json(all)
+        }catch(err){
+            return res.json({raw: [], affected: 0})
+        }
+    }
 
 }
 export default new TeamsController();
