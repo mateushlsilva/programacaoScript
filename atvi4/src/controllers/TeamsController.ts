@@ -8,18 +8,29 @@ class TeamsController {
 
 
     public async getAllTeams (req: Request, res: Response) : Promise<Response> {
-        const teamsRepository = AppDataSource.getRepository(Teams)
-        const all = await teamsRepository.find()
-        return res.json(all.sort((a,b) => a.name.localeCompare(b.name)))
+        try{
+            const teamsRepository = AppDataSource.getRepository(Teams)
+            .createQueryBuilder("team")
+            .orderBy("team.name", "ASC")
+            .getMany()
+            return res.json((await teamsRepository))
+        }catch(err){
+            return res.json({erro: "Não foi possivel pegar os teams"})
+        }
     }
 
     public async getTermoTeams (req: Request, res: Response) : Promise<Response> {
-        const termo:any = req.params.termo
-        const teamsRepository = AppDataSource.getRepository(Teams)
-            .createQueryBuilder("time")
-            .where("time.name like :name", { name:`%${termo}%` })
-            .getMany()
-        return res.json((await teamsRepository).sort((a,b) => a.name.localeCompare(b.name)))
+        try{
+            const termo:any = req.params.termo
+            const teamsRepository = AppDataSource.getRepository(Teams)
+                .createQueryBuilder("time")
+                .where("time.name like :name", { name:`%${termo}%` })
+                //.orderBy("team.name", "ASC")
+                .getMany()
+            return res.json((await teamsRepository))
+        }catch(err){
+            return res.json({erro: "Não foi possivel pegar os teams"})
+        }
     }
 
     public async postTeams (req: Request, res: Response) : Promise<Response> {
