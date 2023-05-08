@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Matches } from "./Matches";
 
 
 @Entity({name:"teams"})
@@ -11,14 +12,10 @@ export class Teams {
     name: string;
 
 
-    // @OneToMany(() => Group, (group) => group.committee)
-    // group: Group[];
+    @OneToMany(() => Matches, (matches) => matches.idhost)
+    matches: Matches[];
 
-    // @OneToMany(() => Call, (call) => call.committee)
-    // call: Call[];
-
-    // @ManyToOne(() => Call, (call) => call.committee, {eager:true})
-    // committee: Committee;
+    @OneToMany(() => Matches, (matches) => matches.idvisitor)
+    matches1: Matches[];
 
 }
-
