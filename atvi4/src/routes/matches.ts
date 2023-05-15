@@ -10,7 +10,7 @@ const routes = Router();
 // routes.put('/modify/:uuid', CommitteeControllers.putCommittee);
 
 routes.get("/", MatchesController.getAllMatches)
-// routes.get("/:termo", TeamsController.getTermoTeams)
+routes.get("/:uuid",MatchesController.getUuid)
 routes.post("/", MatchesController.postMatches)
 // routes.put("/", TeamsController.putTeams)
 // routes.delete("/", TeamsController.deleteTeams)

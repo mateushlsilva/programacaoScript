@@ -20,19 +20,20 @@ class MatchesController {
         }
     }
 
-    // public async getTermoTeams (req: Request, res: Response) : Promise<Response> {
-    //     try{
-    //         const termo:any = req.params.termo
-    //         const teamsRepository = AppDataSource.getRepository(Teams)
-    //             .createQueryBuilder("time")
-    //             .where("time.name like :name", { name:`%${termo}%` })
-    //             //.orderBy("team.name", "ASC")
-    //             .getMany()
-    //         return res.json((await teamsRepository))
-    //     }catch(err){
-    //         return res.json({erro: "Não foi possivel pegar os teams"})
-    //     }
-    // }
+    public async getUuid (req: Request, res: Response) : Promise<Response> {
+        try{
+            const termo:any = req.params.uuid
+            const matchRepository = AppDataSource.getRepository(Match)
+                .createQueryBuilder("match")
+                .where("match.host = :host", { host:termo })
+                .orWhere("match.visitor = :visitor", { visitor:termo })
+                .orderBy("match.date", "DESC")
+                .getMany()
+            return res.json((await matchRepository))
+        }catch(err){
+            return res.json({erro: "Não foi possivel pegar os teams"})
+        }
+    }
 
     public async postMatches (req: Request, res: Response) : Promise<Response> {
         try{
