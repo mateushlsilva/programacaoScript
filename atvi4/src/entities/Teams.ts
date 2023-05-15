@@ -1,6 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Matches } from "./Matches";
-
+import { Match } from "./Matchs";
 
 @Entity({name:"teams"})
 export class Teams {
@@ -10,12 +9,10 @@ export class Teams {
 
     @Column({unique: true})
     name: string;
+    
+    @OneToMany(() => Match, (match) => match.host)
+    host: Match[];
 
-
-    @OneToMany(() => Matches, (matches) => matches.idhost)
-    matches: Matches[];
-
-    @OneToMany(() => Matches, (matches) => matches.idvisitor)
-    matches1: Matches[];
-
+    @OneToMany(() => Match, (match) => match.visitor)
+    visitor: Match[];
 }

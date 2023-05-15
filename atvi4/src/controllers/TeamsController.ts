@@ -38,7 +38,7 @@ class TeamsController {
             const create = req.body
             const teamsRepository = AppDataSource.getRepository(Teams)
             const insert = new Teams();
-            insert.name = create.name[0].toUpperCase() + create.name.slice(1,create.name.length).toLowerCase()
+            insert.name = create.name.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase());
             const all = await teamsRepository.save(insert)
             return res.json(all)
         }catch(err){
@@ -51,7 +51,7 @@ class TeamsController {
             const create = req.body
             const teamsRepository = AppDataSource.getRepository(Teams)
             const find = await teamsRepository.findOneBy({id: create.id})
-            find.name = create.name[0].toUpperCase() + create.name.slice(1,create.name.length).toLowerCase()
+            find.name = create.name.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase());
             const all = await teamsRepository.save(find)
             return res.json(all)
         }catch(err){
