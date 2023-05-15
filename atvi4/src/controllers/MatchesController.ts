@@ -9,12 +9,15 @@ class MatchesController {
 
     public async getAllMatches (req: Request, res: Response) : Promise<Response> {
         try{
+            const {limit, offset} = req.body
             const teamsRepository = AppDataSource.getRepository(Match)
-            // .createQueryBuilder("team")
-            // .orderBy("team.name", "ASC")
-            // .getMany()
-            const all = await teamsRepository.find()
-            return res.json(all)
+            .createQueryBuilder("match")
+            .orderBy("match.date", "DESC")
+            .limit(limit)
+            .offset(offset)
+            .getMany()
+            
+            return res.json((await teamsRepository))
         }catch(err){
             return res.json({erro: "Não foi possivel pegar os teams"})
         }
