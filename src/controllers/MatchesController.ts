@@ -75,25 +75,25 @@ class MatchesController {
                 
             const findRep = AppDataSource.getRepository(Match)
             const all = await findRep.findOneBy({id: id})
-            
+
             return res.json(all)
         }catch(err){
             return res.json({error: "Erro ao mudar!"})
         }
     }
 
-    // public async deleteTeams (req: Request, res: Response) : Promise<Response> {
-    //     try{
-    //         const create = req.body
-    //         const teamsRepository = AppDataSource.getRepository(Teams)
-    //         const find = await teamsRepository.findOneBy({id: create.id})
+    public async deleteMatch (req: Request, res: Response) : Promise<Response> {
+        try{
+            const { id } = req.body
+            const matchRepository = AppDataSource.getRepository(Match)
+            const find = await matchRepository.findOneBy({id: id})
             
-    //         const all = await teamsRepository.delete(find)
-    //         return res.json(all)
-    //     }catch(err){
-    //         return res.json({raw: [], affected: 0})
-    //     }
-    // }
+            const all = await matchRepository.delete(find)
+            return res.json(all)
+        }catch(err){
+            return res.json({raw: [], affected: 0})
+        }
+    }
 
 }
 export default new MatchesController();
