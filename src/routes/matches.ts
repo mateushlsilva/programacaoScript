@@ -12,7 +12,7 @@ const routes = Router();
 routes.get("/", MatchesController.getAllMatches)
 routes.get("/:uuid",MatchesController.getUuid)
 routes.post("/", MatchesController.postMatches)
-// routes.put("/", TeamsController.putTeams)
+routes.put("/", MatchesController.putMatch)
 // routes.delete("/", TeamsController.deleteTeams)
 
 export default routes;

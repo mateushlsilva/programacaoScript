@@ -2,6 +2,7 @@ import AppDataSource from "../data-source";
 import { Request, Response } from 'express';
 
 import { Match } from "../entities/Matchs";
+import { Teams } from "../entities/Teams";
 
 
 class MatchesController {
@@ -57,18 +58,29 @@ class MatchesController {
         }
     }
 
-    // public async putTeams (req: Request, res: Response) : Promise<Response> {
-    //     try{
-    //         const create = req.body
-    //         const teamsRepository = AppDataSource.getRepository(Teams)
-    //         const find = await teamsRepository.findOneBy({id: create.id})
-    //         find.name = create.name[0].toUpperCase() + create.name.slice(1,create.name.length).toLowerCase()
-    //         const all = await teamsRepository.save(find)
-    //         return res.json(all)
-    //     }catch(err){
-    //         return res.json({error: "O nome já existe"})
-    //     }
-    // }
+    public async putMatch (req: Request, res: Response) : Promise<Response> {
+        try{
+            const { id, idhost, idvisitor, date } = req.body
+
+            const teams = AppDataSource.getRepository(Teams)
+            if( await teams.findOneBy({id: idhost}) == null){ return res.json({error: "Mandante desconhecido"}) }
+            if(await teams.findOneBy({id: idvisitor}) == null ){ return res.json({error: "Visitante desconhecido"}) }
+            
+            const matchRepository = AppDataSource
+                .createQueryBuilder()
+                .update(Match)
+                .set({ host: idhost, visitor: idvisitor, date: date })
+                .where("id = :id", { id: id })
+                .execute()
+                
+            const findRep = AppDataSource.getRepository(Match)
+            const all = await findRep.findOneBy({id: id})
+            
+            return res.json(all)
+        }catch(err){
+            return res.json({error: "Erro ao mudar!"})
+        }
+    }
 
     // public async deleteTeams (req: Request, res: Response) : Promise<Response> {
     //     try{
