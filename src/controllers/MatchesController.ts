@@ -45,14 +45,15 @@ class MatchesController {
 
     public async postMatches (req: Request, res: Response) : Promise<Response> {
         try{
-            const create = req.body
+            const { idhost, idvisitor, date } = req.body
             const matchesRepository = AppDataSource.getRepository(Match)
             const insert = new Match();
-            insert.host = create.idhost
-            insert.visitor =  create.idvisitor
-            insert.date = create.date
+            insert.host = idhost
+            insert.visitor = idvisitor
+            insert.date = date
             const all = await matchesRepository.save(insert)
-            return res.json(all)
+            const find = await matchesRepository.findOneBy({id: all.id})
+            return res.json(find)
         }catch(err){
             return res.json({error: "O nome já existe"})
         }
