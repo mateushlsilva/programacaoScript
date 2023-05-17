@@ -2,6 +2,7 @@ import AppDataSource from "../data-source";
 import { Request, Response } from 'express';
 
 import { Match } from "../entities/Matchs";
+import { Teams } from "../entities/Teams";
 
 
 class MatchesController {
@@ -12,6 +13,8 @@ class MatchesController {
             const {limit, offset} = req.body
             const teamsRepository = AppDataSource.getRepository(Match)
             .createQueryBuilder("match")
+            .leftJoinAndSelect("match.host", "host")
+            .leftJoinAndSelect("match.visitor", "visitor")
             .orderBy("match.date", "DESC")
             .limit(limit)
             .offset(offset)
@@ -28,6 +31,8 @@ class MatchesController {
             const termo:any = req.params.uuid
             const matchRepository = AppDataSource.getRepository(Match)
                 .createQueryBuilder("match")
+                .leftJoinAndSelect("match.host", "host")
+                .leftJoinAndSelect("match.visitor", "visitor")
                 .where("match.host = :host", { host:termo })
                 .orWhere("match.visitor = :visitor", { visitor:termo })
                 .orderBy("match.date", "DESC")
@@ -40,44 +45,56 @@ class MatchesController {
 
     public async postMatches (req: Request, res: Response) : Promise<Response> {
         try{
-            const create = req.body
+            const { idhost, idvisitor, date } = req.body
             const matchesRepository = AppDataSource.getRepository(Match)
             const insert = new Match();
-            insert.host = create.idhost
-            insert.visitor =  create.idvisitor
-            insert.date = create.date
+            insert.host = idhost
+            insert.visitor = idvisitor
+            insert.date = date
             const all = await matchesRepository.save(insert)
-            return res.json(all)
+            const find = await matchesRepository.findOneBy({id: all.id})
+            return res.json(find)
         }catch(err){
             return res.json({error: "O nome já existe"})
         }
     }
 
-    // public async putTeams (req: Request, res: Response) : Promise<Response> {
-    //     try{
-    //         const create = req.body
-    //         const teamsRepository = AppDataSource.getRepository(Teams)
-    //         const find = await teamsRepository.findOneBy({id: create.id})
-    //         find.name = create.name[0].toUpperCase() + create.name.slice(1,create.name.length).toLowerCase()
-    //         const all = await teamsRepository.save(find)
-    //         return res.json(all)
-    //     }catch(err){
-    //         return res.json({error: "O nome já existe"})
-    //     }
-    // }
+    public async putMatch (req: Request, res: Response) : Promise<Response> {
+        try{
+            const { id, idhost, idvisitor, date } = req.body
 
-    // public async deleteTeams (req: Request, res: Response) : Promise<Response> {
-    //     try{
-    //         const create = req.body
-    //         const teamsRepository = AppDataSource.getRepository(Teams)
-    //         const find = await teamsRepository.findOneBy({id: create.id})
+            const teams = AppDataSource.getRepository(Teams)
+            if( await teams.findOneBy({id: idhost}) == null){ return res.json({error: "Mandante desconhecido"}) }
+            if(await teams.findOneBy({id: idvisitor}) == null ){ return res.json({error: "Visitante desconhecido"}) }
             
-    //         const all = await teamsRepository.delete(find)
-    //         return res.json(all)
-    //     }catch(err){
-    //         return res.json({raw: [], affected: 0})
-    //     }
-    // }
+            const matchRepository = AppDataSource
+                .createQueryBuilder()
+                .update(Match)
+                .set({ host: idhost, visitor: idvisitor, date: date })
+                .where("id = :id", { id: id })
+                .execute()
+                
+            const findRep = AppDataSource.getRepository(Match)
+            const all = await findRep.findOneBy({id: id})
+
+            return res.json(all)
+        }catch(err){
+            return res.json({error: "Erro ao mudar!"})
+        }
+    }
+
+    public async deleteMatch (req: Request, res: Response) : Promise<Response> {
+        try{
+            const { id } = req.body
+            const matchRepository = AppDataSource.getRepository(Match)
+            const find = await matchRepository.findOneBy({id: id})
+            
+            const all = await matchRepository.delete(find)
+            return res.json(all)
+        }catch(err){
+            return res.json({raw: [], affected: 0})
+        }
+    }
 
 }
 export default new MatchesController();
