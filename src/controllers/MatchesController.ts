@@ -30,6 +30,8 @@ class MatchesController {
             const termo:any = req.params.uuid
             const matchRepository = AppDataSource.getRepository(Match)
                 .createQueryBuilder("match")
+                .leftJoinAndSelect("match.host", "host")
+                .leftJoinAndSelect("match.visitor", "visitor")
                 .where("match.host = :host", { host:termo })
                 .orWhere("match.visitor = :visitor", { visitor:termo })
                 .orderBy("match.date", "DESC")
