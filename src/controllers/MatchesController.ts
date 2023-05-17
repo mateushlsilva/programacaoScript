@@ -12,6 +12,8 @@ class MatchesController {
             const {limit, offset} = req.body
             const teamsRepository = AppDataSource.getRepository(Match)
             .createQueryBuilder("match")
+            .leftJoinAndSelect("match.host", "host")
+            .leftJoinAndSelect("match.visitor", "visitor")
             .orderBy("match.date", "DESC")
             .limit(limit)
             .offset(offset)
