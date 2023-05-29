@@ -75,8 +75,8 @@ class MatchesController {
                 .execute()
                 
             const findRep = AppDataSource.getRepository(Match)
-           const all = await findRep.findOneBy({id: id})
-            matchRepository.then((re) => {
+            matchRepository.then(async (re) => {
+                const all = await findRep.findOneBy({id: id})
                 return res.json(all)
             })
             //if(all.host === idhost){return res.json(all)}
