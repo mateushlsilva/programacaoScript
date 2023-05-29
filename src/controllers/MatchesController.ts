@@ -75,9 +75,11 @@ class MatchesController {
                 .execute()
                 
             const findRep = AppDataSource.getRepository(Match)
-            const all = await findRep.findOneBy({id: id})
-
-            return res.json(await findRep.findOneBy({id: id}))
+           const all = await findRep.findOneBy({id: id})
+            matchRepository.then((re) => {
+                return res.json(all)
+            })
+            //if(all.host === idhost){return res.json(all)}
         }catch(err){
             return res.json({error: "Erro ao mudar!"})
         }
